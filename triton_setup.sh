@@ -27,9 +27,6 @@ apt-get update && \
 echo "Creating ${TRITON_DOWNLOADS} directory ..."
 mkdir -p $TRITON_DOWNLOADS
 
-echo "Copy the eulp app ....."
-cp  -r ./eu_lp_model/* $TRITON_DOWNLOADS
-
 echo "Downloading ${TRITON_PKG_PATH} to ${TRITON_DOWNLOADS} ... "
 wget -O $TRITON_DOWNLOADS/jetpack.tgz $TRITON_PKG_PATH
 
