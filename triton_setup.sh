@@ -37,7 +37,8 @@ rm jetpack.tgz
 
 echo "Convert the model ......"
 chmod 777 -R tao-converter/tao-converter
-./model_converter.sh
+chmod 777 -R ./*.sh
+./model_convert.sh
 
 
 popd
