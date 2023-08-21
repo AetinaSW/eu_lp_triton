@@ -1,4 +1,4 @@
-*.plan
+# *.plan
 5.0.2
 tritonserver/backends
 tritonserver/bin

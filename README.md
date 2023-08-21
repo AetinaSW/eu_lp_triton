@@ -10,12 +10,12 @@
 
 3. setup the env of application 
       ```
-      ./ app_setup.sh
+      ./app_setup.sh
       ```
 
 4. give the permission to the script files
-      cd tritonserver
       ```
+      cd tritonserver
       sudo chmod 777 -R ./*.sh
       ```
 
