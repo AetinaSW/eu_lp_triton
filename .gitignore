@@ -1,0 +1,8 @@
+*.plan
+5.0.2
+tritonserver/backends
+tritonserver/bin
+tritonserver/client
+tritonserver/include
+tritonserver/lib
+tritonserver/qa
