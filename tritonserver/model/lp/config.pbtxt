@@ -13,7 +13,7 @@ output [
   {
     name: "predictions/Softmax"
     data_type: TYPE_FP32
-    dims: [6, 1, 1]
+    dims: [7, 1, 1]
     label_filename: "labels.txt"
   }
 ]

@@ -43,6 +43,7 @@ import tritonclient.grpc.model_config_pb2 as mc
 FLAGS = None
 
 contries = {
+    "Belgium":"./contries_img/Belgium.png",
     "France":"./contries_img/France.png",
     "German":"./contries_img/German.png",
     "Italy":"./contries_img/Italy.png",
