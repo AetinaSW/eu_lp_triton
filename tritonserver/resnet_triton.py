@@ -45,6 +45,7 @@ FLAGS = None
 contries = {
     "Belgium":"./contries_img/Belgium.png",
     "France":"./contries_img/France.png",
+    "Finland":"./contries_img/Finland.png",
     "German":"./contries_img/German.png",
     "Italy":"./contries_img/Italy.png",
     "Netherlands":"./contries_img/Netherlands.png",
