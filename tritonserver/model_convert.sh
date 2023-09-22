@@ -1,4 +1,4 @@
- ./tao-converter/tao-converter ./model/lp/resnet10_180_90_belgium.etle \
+./tlt_converter/tlt-converter ./model/lp/resnet10_180_90_finland.etle \
               -k nvidia_tlt \
               -o predictions/Softmax \
               -d 3,180,90 \
