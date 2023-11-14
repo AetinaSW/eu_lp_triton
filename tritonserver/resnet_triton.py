@@ -44,6 +44,7 @@ FLAGS = None
 
 contries = {
     "Belgium":"./contries_img/Belgium.png",
+    "England":"./contries_img/England.png",
     "France":"./contries_img/France.png",
     "Finland":"./contries_img/Finland.png",
     "German":"./contries_img/German.png",
@@ -244,20 +245,24 @@ def postprocess(response, batch_size, supports_batching):
 
 
 def get_lp(input):
-    kernel = np.ones((3,3), np.uint8)
+    kernel = np.ones((2,2), np.uint8)
+    # kernel_2 = np.ones((2,2), np.uint8)
     gray = cv2.cvtColor(input, cv2.COLOR_BGR2GRAY)
-    bilateral = cv2.bilateralFilter(gray, 9, 15, 15)
-    blur = cv2.GaussianBlur(bilateral, (7, 7), 0)
-    edged = cv2.Canny(blur, 10, 100)
+    blur = cv2.GaussianBlur(gray, (3, 3), 0)
+    bilateral = cv2.bilateralFilter(blur, 3, 15, 15)
+    
+    edged = cv2.Canny(bilateral, 30, 100)
     # cv2.imshow("canny", edged)
-    dilation = cv2.dilate(edged, kernel, iterations = 1)
+    
+    dilation = cv2.dilate(edged, kernel, iterations = 2)
     erosion = cv2.erode(dilation, kernel, iterations = 1)
 
-    # dilation = cv2.dilate(erosion, kernel, iterations = 1)
-    # erosion = cv2.erode(dilation, kernel, iterations = 1)
+    # dilation = cv2.dilate(erosion, kernel_2, iterations = 1)
+    # erosion = cv2.erode(dilation, kernel_2, iterations = 1)
     
     # cv2.imshow("edged", erosion)
-    # contours, _ = cv2.findContours(erosion, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+
+    # contours, _ = cv2.findContours(erosion, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
     contours, _ = cv2.findContours(erosion, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     contours = sorted(contours, key = cv2.contourArea, reverse = True)[:3]
     
@@ -266,7 +271,7 @@ def get_lp(input):
     flag = 0
     for contour in contours:
         perimeter = cv2.arcLength(contour, True)
-        approximationAccuracy = 0.02 * perimeter
+        approximationAccuracy = 0.015 * perimeter
         approximation = cv2.approxPolyDP(contour, approximationAccuracy, True)
         if len(approximation) == 4:
             rectangleContours.append(contour)
@@ -478,8 +483,9 @@ if __name__ == '__main__':
 
             img_crop_position, img_crop = get_lp(frame_cpy)
             
+            
             if img_crop != []:
-                if 0 in img_crop.shape or img_crop.shape[0] < 60 or img_crop.shape[0]/img_crop.shape[1] > 2.5:
+                if 0 in img_crop.shape or img_crop.shape[0] < 70 or img_crop.shape[0]/img_crop.shape[1] > 2.5:
                     img = frame_cpy
                     img_crop = []
                 
